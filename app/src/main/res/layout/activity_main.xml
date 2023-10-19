@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/base_background"
+    tools:context=".MainActivity">
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/meow"
+        android:layout_width="361dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="4dp"
+
+        android:text="Choose your topic interest"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195" />
+
+    <TextView
+        android:id="@+id/wew"
+        android:layout_width="355dp"
+        android:layout_height="88dp"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="22dp"
+
+        android:text="among all diffrent topics that we give out
+         choose the best topics that might intereset you"
+        android:textColor="#575757"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/meow"
+        app:layout_constraintTop_toBottomOf="@id/meow" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gridView1"
+        android:layout_width="315dp"
+        android:layout_height="300dp"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/wew"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@id/wew"
+        app:layout_constraintTop_toBottomOf="@id/wew"
+        app:layout_constraintVertical_bias="0.145">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/mad"
+        android:layout_width="327dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/buttonsuperior"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="@id/wew"
+        app:layout_constraintStart_toStartOf="@id/wew"
+        app:layout_constraintTop_toBottomOf="@id/gridView1"></androidx.appcompat.widget.AppCompatButton>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
