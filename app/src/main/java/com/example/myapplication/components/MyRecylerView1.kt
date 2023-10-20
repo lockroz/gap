@@ -1,7 +1,6 @@
 package com.example.myapplication.components
 
 
-
 import android.database.DataSetObserver
 import android.view.LayoutInflater
 import android.view.View
@@ -11,40 +10,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.models.Category
+import com.example.myapplication.models.Course
 
 
-
-class CategoryAdapter1(private val context: MainActivity, private val categories: List<Category>, ) :
-    RecyclerView.Adapter<com.example.myapplication.components.ListItem>(), ListAdapter {
-    private val selectedCategories = HashSet<Category>()
+class CategoryAdapter1(private val context: MainActivity, private val courses: List<Course>) :
+    RecyclerView.Adapter<ListItem2>(), ListAdapter {
 
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): com.example.myapplication.components.ListItem {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ListItem2{
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.grid_item_layout, parent, false)
-        return ListItem(itemView)
+        return ListItem2(itemView)
     }
 
 
+    override fun getItemCount(): Int = courses.size
 
-    override fun getItemCount(): Int = categories.size
+    override fun onBindViewHolder(ListItem2:ListItem2, position: Int) {
+        val course = courses[position]
 
-    override fun onBindViewHolder(ListItem : com.example.myapplication.components.ListItem, position: Int) {
-        val category = categories[position]
+        ListItem2.nameTextView.text = course.name
+        ListItem2.durationTextView.text = course.duration
+        ListItem2.instructorTextView.text = course.instructor
+        ListItem2.descriptionTextView.text = course.description
+        ListItem2.locationTextView.text = course.location
 
-        ListItem.categoryImageView.setImageResource(category.imageResourceId)
-        ListItem.categoryTextView.text = category.name
-        ListItem.coursesTextView.text = category.courses.joinToString(", ") { it.name }
-        ListItem.categoryCheckBox.isChecked = category in selectedCategories
-
-        ListItem.categoryCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                selectedCategories.add(category)
-            } else {
-                selectedCategories.remove(category)
-            }
-        }
 
     }
 
@@ -84,7 +77,4 @@ class CategoryAdapter1(private val context: MainActivity, private val categories
         TODO("Not yet implemented")
     }
 
-    fun getSelectedCategories(): Set<Category> {
-        return selectedCategories
-    }
 }

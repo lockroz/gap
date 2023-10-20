@@ -15,24 +15,19 @@ import kotlinx.coroutines.launch
 
 
 class SharedViewModel : ViewModel() {
-    private val selectedCategories by lazy {
-        MutableLiveData<Array<Category>?>(null)
-    }
-    init {
-        selectedCategories.value = selectedCategories.value
-        Log.d("fer", "getSelectedCategories: ${selectedCategories.value}")
-    }
+    private val selectedCategories = MutableStateFlow<Array<Category>?>(null)
 
-    fun getSelectedCategories(): LiveData<Array<Category>?> {
+
+    fun getSelectedCategories(): StateFlow<Array<Category>?> {
         Log.d("fer", "getSelectedCategories: ${selectedCategories.value}")
         return selectedCategories
     }
 
     fun setSelectedCategories (categories: Array<Category>?) {
-        CoroutineScope(Dispatchers.Main).launch {
+
             selectedCategories.value = categories
             Log.d("fer", "getSelectedCategories: ${selectedCategories.value}")
 
-        }
+
     }
 }

@@ -1,9 +1,11 @@
 package com.example.myapplication
 
+import DataRepository
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.SearchView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,22 +17,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.components.CategoryAdapter1
-import com.example.myapplication.models.DataRepository
+
+
 
 class MainActivity : ComponentActivity() {
-    lateinit private var navigateButton: Button
+    private lateinit var navigateButton: SearchView
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
 
-            val categories = DataRepository().initializeCategories()
+            val courses = DataRepository().initializeMathCourses() + DataRepository().initializeEconCourses()
 
 
-            val recyclerView = findViewById<RecyclerView>(R.id.gridView1)
+            val recyclerView = findViewById<RecyclerView>(R.id.sam2)
 
-            val adapter = CategoryAdapter1(this,categories)
+            val adapter = CategoryAdapter1(this,courses)
 
 
             recyclerView?.adapter = adapter
@@ -39,7 +42,6 @@ class MainActivity : ComponentActivity() {
             navigateButton = findViewById(R.id.mad)
 
             navigateButton.setOnClickListener {
-                intentToNavigateTothirds.putExtra("selectedCategories", adapter.getSelectedCategories().toTypedArray())
 
                 startActivity(intentToNavigateTothirds)
             }

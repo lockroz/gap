@@ -1,6 +1,7 @@
-package com.example.myapplication.models
 
 import com.example.myapplication.R
+import com.example.myapplication.models.Category
+import com.example.myapplication.models.Course
 
 class  DataRepository {
     // Simulate loading data from an API

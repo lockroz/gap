@@ -7,40 +7,54 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.BlankFragment
+import com.example.myapplication.MainActivity2
 import com.example.myapplication.R
-import com.example.myapplication.models.Category
+import com.example.myapplication.models.Course
 
 
-class CategoryAdapter2(private val context: BlankFragment, private var categories: Array<Category>?) :
-    RecyclerView.Adapter<com.example.myapplication.components.ListItem1>(), ListAdapter {
+class CategoryAdapter2(private val context: MainActivity2, private val courses: List<Course>) :
+    RecyclerView.Adapter<ListItem2>(), ListAdapter {
 
+    var filteredCourses: List<Course> = courses
 
+    fun filter(searchText: String?) {
+        if (searchText.isNullOrBlank()) {
+            // If search text is null or empty, show all courses
+            filteredCourses = courses
+        } else {
+            // Filter based on the search query (duration)
+            filteredCourses = courses.filter { course ->
+                course.duration.contains(searchText, ignoreCase = true)
+            }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): com.example.myapplication.components.ListItem1 {
+        }
+
+        notifyDataSetChanged()
+    }
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ListItem2{
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_category2, parent, false)
-        return ListItem1(itemView)
+            .inflate(R.layout.grid_item_layout, parent, false)
+        return ListItem2(itemView)
     }
 
 
+    override fun getItemCount(): Int = filteredCourses.size
 
-    override fun getItemCount(): Int = categories?.size ?: 0
+    override fun onBindViewHolder(ListItem2:ListItem2, position: Int) {
+        val course = filteredCourses[position]
 
-    override fun onBindViewHolder(ListItem1 : com.example.myapplication.components.ListItem1, position: Int) {
-        val category = categories?.get(position)
-
-        category?.let { ListItem1.categoryImageView1.setImageResource(it.imageResourceId) }
-        ListItem1.categoryTextView1.text = category?.name
-        ListItem1.coursesTextView1.text = category?.courses?.joinToString(", ") { it.name }
-
+        ListItem2.nameTextView.text = course.name
+        ListItem2.durationTextView.text = course.duration
+        ListItem2.instructorTextView.text = course.instructor
+        ListItem2.descriptionTextView.text = course.description
+        ListItem2.locationTextView.text = course.location
 
 
     }
-//    fun setCategories(newCategories: List<Category>) {
-//        categories = newCategories
-//        notifyDataSetChanged()
-//    }
+
     override fun registerDataSetObserver(p0: DataSetObserver?) {
         TODO("Not yet implemented")
     }
@@ -76,4 +90,5 @@ class CategoryAdapter2(private val context: BlankFragment, private var categorie
     override fun isEnabled(p0: Int): Boolean {
         TODO("Not yet implemented")
     }
+
 }

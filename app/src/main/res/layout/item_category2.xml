@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/categoryImageView1"
+        android:id="@+id/categoryImageView2"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="start"
@@ -23,7 +23,7 @@
         android:layout_height="34dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/categoryImageView1"
+        app:layout_constraintStart_toEndOf="@id/categoryImageView2"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/coursesTextView1"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/categoryTextView1"
-        app:layout_constraintStart_toEndOf="@id/categoryImageView1"/>
+        app:layout_constraintStart_toEndOf="@id/categoryImageView2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
